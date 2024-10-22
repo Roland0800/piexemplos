@@ -18,10 +18,10 @@ public class eventosController {
 	
 	@RequestMapping("/eventos/respForm")
 	public String respForm(){
-		String nome;
-		String local;
-		String data;
-		String horario;
+		String nome = null;
+		String local = null;
+		String data = null;
+		String horario = null;
 		System.out.println(nome);
 		System.out.println(local);
 		System.out.println(data);
