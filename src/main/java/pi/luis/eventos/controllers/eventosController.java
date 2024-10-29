@@ -14,7 +14,7 @@ public class eventosController {
 	
 	@RequestMapping("/eventos/respForm")
 	public String respForm(Evento res){
-		System.out.println("respForm" + res.getNome() + res.getLocal() + res.getData() + res.getHorario());
+		System.out.println(res.getNome() + res.getLocal() + res.getData() + res.getHorario());
 		return "respForm";
 	}
 }
