@@ -1,5 +1,6 @@
 package pi.luis.eventos.controllers;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pi.luis.eventos.models.Evento;
@@ -12,9 +13,9 @@ public class eventosController {
 		return("formEvento");
 	}
 	
-	@RequestMapping("/eventos/respForm")
+	@PostMapping("/eventos/respForm")
 	public String respForm(Evento res){
-		System.out.println(res.getNome() + res.getLocal() + res.getData() + res.getHorario());
+		System.out.println(res.toString());
 		return "respForm";
 	}
 }
