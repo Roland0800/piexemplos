@@ -35,9 +35,9 @@ public class eventosController {
 	@GetMapping
 	public ModelAndView listar() {
 		
-		List<Evento> Eventos = er.findAll();
+		List<Evento> eventos = er.findAll();
 		ModelAndView mv = new ModelAndView("eventos/lista");
-		mv.addObject("eventos", Eventos);
+		mv.addObject("eventos", eventos);
 		return mv;
 	}
 	
