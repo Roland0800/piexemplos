@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import pi.luis.eventos.models.Convidado;
 import pi.luis.eventos.models.Evento;
 import pi.luis.eventos.repositories.eventoRepository;
 
@@ -55,5 +56,14 @@ public class eventosController {
 		md.addObject("evento", evento);
 		
 		return md;
+	}
+	
+	@PostMapping("/{id}")
+	public String salvarConvidado(@PathVariable Long id, Convidado convidado) {
+		
+		System.out.println("id do evento" + id);
+		System.out.println(convidado);
+		
+		return "redirect:/eventos/{id}";
 	}
 }
