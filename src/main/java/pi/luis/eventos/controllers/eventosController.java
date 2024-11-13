@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import pi.luis.eventos.models.Convidado;
 import pi.luis.eventos.models.Evento;
+import pi.luis.eventos.repositories.convidadoRepository;
 import pi.luis.eventos.repositories.eventoRepository;
 
 @Controller
@@ -20,6 +21,8 @@ public class eventosController {
 	
 	@Autowired
 	private eventoRepository er;
+	@Autowired
+	private convidadoRepository cr;
 	
 	@GetMapping("/form")
 	public String form(){
@@ -58,12 +61,22 @@ public class eventosController {
 		return md;
 	}
 	
-	@PostMapping("/{id}")
-	public String salvarConvidado(@PathVariable Long id, Convidado convidado) {
+	@PostMapping("/{idEvento}")
+	public String salvarConvidado(@PathVariable Long idEvento, Convidado convidado) {
 		
-		System.out.println("id do evento" + id);
+		System.out.println("id do evento: " + idEvento);
 		System.out.println(convidado);
 		
-		return "redirect:/eventos/{id}";
+		Optional<Evento> opt = er.findById(idEvento);
+		if (opt.isEmpty()) {
+			return "redirect:/eventos";
+		}
+		
+		Evento evento = opt.get();
+		convidado.setEvento(evento);
+		
+		cr.save(convidado);
+		
+		return "redirect:/eventos/{idEvento}";
 	}
 }
