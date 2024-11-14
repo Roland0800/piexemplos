@@ -49,5 +49,11 @@ public class Convidado {
 	public void setEvento(Evento evento) {
 		this.evento = evento;
 	}
+
+	@Override
+	public String toString() {
+		return "Convidado [id=" + id + ", nome=" + nome + ", rg=" + rg + ", evento=" + evento + "]";
+	}
+	
 	
 }
