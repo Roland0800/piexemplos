@@ -66,7 +66,7 @@ public class eventosController {
 	@PostMapping("/{idEvento}")
 	public String salvarConvidado(@PathVariable Long idEvento, Convidado convidado) {
 		
-		System.out.println("id do evento" + idEvento);
+		System.out.println("id do evento " + idEvento);
 		System.out.println(convidado);
 		
 		Optional<Evento> opt = er.findById(idEvento);
@@ -79,5 +79,19 @@ public class eventosController {
 		cr.save(convidado);
 		
 		return "redirect:/eventos/{idEvento}";
+	}
+	
+	@GetMapping("/{id}/remover")
+	public String apagarEvento(@PathVariable Long id) {
+		
+		Optional<Evento> opt = er.findById(id);
+		
+		if(!opt.isEmpty()) {
+			List<Convidado> convidados = cr.findByEvento(opt.get());
+			cr.deleteAll(convidados);
+			er.delete(opt.get());
+		}
+		
+		return "redirect:/eventos";
 	}
 }
