@@ -5,6 +5,8 @@
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 <title>Eventos</title>
 </head>
 <body>
@@ -64,15 +66,19 @@
 						<span class="card-title">Convidados:</span>
 						<table class="highlight">
 							<thead>
-								<th>Id</th>
-								<th>Nome</th>
-								<th>RG</th>
+								<tr>
+									<th>Id</th>
+									<th>Nome</th>
+									<th>RG</th>
+									<th></th>
+								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="c : ${convidados}">
 									<td th:text="${c.id}">2</td>
 									<td th:text="${c.nome}">Luis</td>
 									<td th:text="${c.rg}">123124325</td>
+									<td><a th:href="@{/eventos/{idEvento}/remover/convidado/{id}(idEvento=${evento.id}, id=${c.id})}"><i class="material-icons">delete</i></a></td>
 								</tr>
 							</tbody>
 						</table>
